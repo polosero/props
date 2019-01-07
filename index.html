@@ -2,16 +2,57 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>props</title>
+    <title>Pološero: rekvizity</title>
     <link rel="stylesheet" href="https://login.polo-sero.cz/default.css">
+    <link rel="stylesheet" href="main.css">
     <script src="https://login.polo-sero.cz/lib.js"></script>
+    <script src="main.js"></script>
   </head>
   <body>
-    <h1>Hello there!</h1>
+    <header>
+      <h1>Rekvizity</h1>
+
+    </header>
+
+    <aside>
+      <button type="button" onclick="openAddProp()">Přidat rekvizitu</button>
+    </aside>
+
+    <h2>Výpis rekvizit</h2>
     <main>
-      <article>
-        <!--  -->
-      </article>
     </main>
+
+
+    <form id="prop-form" onsubmit="ignoreSubmit(this, event)" hidden>
+      <fieldset>
+        <legend></legend>
+        <aside>
+          <button type="button" onclick="hidePropForm()">x</button>
+        </aside>
+        <input type="hidden" name="id">
+        <label> Jméno
+          <input type="text" name="name" required>
+        </label>
+        <label> Popis
+          <textarea name="description"></textarea>
+        </label>
+        <label> #Vyrobeno
+          <input type="number" name="quantity_created" value="0">
+        </label>
+        <button type="submit"> Uložit </button>
+        <button type="button" class="delete" hidden> Smazat rekvizitu </button>
+      </fieldset>
+    </form>
+
+
+    <template id="prop">
+      <article class="prop">
+        <button type="button" class="edit">edit</button>
+        <h3></h3>
+        <!-- TODO: count -->
+        <p class="description"></p>
+        <p class="comment"></p>
+      </article>
+    </template>
   </body>
 </html>

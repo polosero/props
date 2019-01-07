@@ -1,0 +1,30 @@
+main {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.prop {
+    width: 15rem;
+    border: 1px solid gray;
+    border-radius: 0.5vw;
+    padding: 0.5vw;
+    margin: 0.5vw;
+}
+
+.prop > .edit {
+    float: right;
+}
+
+
+#prop-form {
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+#prop-form > fieldset {
+    margin: auto;
+    background-color: silver;
+}
