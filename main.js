@@ -1,5 +1,7 @@
 window.addEventListener('load', fetchProps);
 
+window.unauthorizedHandler = redirectToLogin;
+
 
 function fetchProps() {
     clearProps();
