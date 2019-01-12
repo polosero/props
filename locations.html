@@ -2,25 +2,28 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Pološero: rekvizity</title>
+    <title>Pološero: lokace</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://login.polo-sero.cz/default.css">
     <link rel="stylesheet" href="main.css">
     <script src="https://login.polo-sero.cz/lib.js"></script>
+    <script type="text/javascript">
+      LOCATIONS = true;
+    </script>
     <script src="main.js"></script>
   </head>
   <body>
     <header>
-      <h1>Rekvizity</h1>
+      <h1>Lokace</h1>
 
     </header>
 
     <aside>
-      <button type="button" onclick="openAddProp()">Přidat rekvizitu</button>
-      <a href="/locations.html">Lokace</a>
+      <button type="button" onclick="openAddProp()">Přidat lokaci</button>
+      <a href="/">Rekvizity</a>
     </aside>
 
-    <h2>Výpis rekvizit</h2>
+    <h2>Výpis lokací</h2>
     <main>
     </main>
 
@@ -38,11 +41,11 @@
         <label> Popis
           <textarea name="description"></textarea>
         </label>
-        <label> #Vyrobeno
-          <input type="number" name="quantity_created" value="0">
+        <label> Vyrobeno (1 nebo 0)
+          <input type="number" name="created" value="0" min="0" max="1" step="1">
         </label>
         <button type="submit"> Uložit </button>
-        <button type="button" class="delete" hidden> Smazat rekvizitu </button>
+        <button type="button" class="delete" hidden> Smazat lokaci </button>
       </fieldset>
     </form>
 
@@ -53,7 +56,7 @@
         <h3></h3>
         <p class="description"></p>
         <p class="comment"></p>
-        <p>Vyrobeno: <span class="quantity_created"></span></p>
+        <p>Vyrobeno: <span class="created"></span></p>
       </article>
     </template>
   </body>

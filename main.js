@@ -3,11 +3,13 @@ window.addEventListener('load', fetchProps);
 window.unauthorizedHandler = redirectToLogin;
 
 
+const ENDPOINT = 'LOCATIONS' in window ? '/locations' : '/props';
+
 function fetchProps() {
     clearProps();
     XHR(
         'GET',
-        '/props/'
+        ENDPOINT + '/'
     ).then(response => {
         clearProps();
         response.forEach(drawProp);
@@ -21,7 +23,7 @@ function addProp(form, event) {
     const data = extract(form);
     XHR(
         'POST',
-        '/props/',
+        ENDPOINT + '/',
         data
     ).then(handleResponse.bind(null, form))
      .catch(handleError.bind(null, form));
@@ -33,7 +35,7 @@ function updateProp(form, event) {
     const data = extract(form);
     XHR(
         'PUT',
-        `/props/${data.id}`,
+        ENDPOINT + `/${data.id}`,
         data
     ).then(handleResponse.bind(null, form))
      .catch(handleError.bind(null, form));
@@ -42,7 +44,7 @@ function updateProp(form, event) {
 function deleteProp(form, propId) {
     XHR(
         'DELETE',
-        `/props/${propId}`
+        ENDPOINT + `/${propId}`
     ).then(handleResponse.bind(null, form))
      .catch(handleError.bind(null, form));
 }
@@ -50,14 +52,14 @@ function deleteProp(form, propId) {
 function acquireLock() {
     return XHR(
         'PUT',
-        '/props/lock'
+        ENDPOINT + '/lock'
     ).catch(handleError.bind(null));
 }
 
 function releaseLock() {
     return XHR(
         'DELETE',
-        '/props/lock'
+        ENDPOINT + '/lock'
     ).catch(handleError.bind(null));
 }
 
@@ -122,6 +124,10 @@ function drawProp(prop) {
     q('h3').innerText = prop.name;
     q('.description').innerText = prop.description;
     q('.comment').innerText = prop.comment || '';
+    if ('created' in prop)
+        q('.created').innerText = prop.created;
+    if ('quantity_created' in prop)
+        q('.quantity_created').innerText = prop.quantity_created;
     document.getElementsByTagName('main')[0]
         .appendChild(content);
 }
