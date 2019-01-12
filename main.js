@@ -74,6 +74,10 @@ function openAddProp() {
 }
 
 function openEditProp(prop) {
+    acquireLock()
+        .then(_openEditProp.bind(null, prop));
+}
+function _openEditProp(prop) {
     const form = document.getElementById('prop-form');
     form.reset();
     form.hidden = false;
@@ -84,8 +88,7 @@ function openEditProp(prop) {
     form.onsubmit = event => {
         event.stopPropagation();
         event.preventDefault();
-        acquireLock()
-            .then(updateProp.bind(null, form, event));
+        updateProp(form, event);
     };
 }
 
@@ -94,6 +97,7 @@ function openEditProp(prop) {
 function handleResponse(form, reponse) {
     fetchProps();
     if (form) {
+        releaseLock();
         form.hidden = true;
         setError(form);
         form.reset();
@@ -108,6 +112,7 @@ function handleError(form, error) {
 
 
 function hidePropForm() {
+    releaseLock();
     document.getElementById('prop-form').hidden = true;
 }
 
